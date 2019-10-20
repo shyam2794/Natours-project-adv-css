@@ -6,3 +6,49 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+
+ /* By default when we write our html elements , we have a predefined set of padding and margin applied to them.
+ Inorder to normalize them and apply the styles from scratch we need this universal selector.
+    
+    box-sizing: border-box -> This prevents the extra width which gets added to the element when we apply some 
+padding . 
+ */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Font is something which should be consistent in our page . So adding this in the body will help us in inheritance . 
+Now this font will be inherited and used across the <p>, <h1> etc .
+
+line-height : provides spacing between the adjacent lines .  
+*/
+
+body {
+    font-family: 'Lato' , sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #777;
+    line-height: 1.7;
+    padding: 30px;
+}
+
+/* 
+    the height property when provided in vh will take the height based on the view port . 
+    the background position when mentioned top , will make the top of the image to remain static when we resize the
+    screen , in this case the bottom of the image will be cropped when we resize.
+    background size when provided with property as cover , will make the image to fit in the specified height . 
+    clipath - the order goes from ( top , right , bottom , left ) . each of the arguments have two things X Y . 
+*/
+
+.header {
+    background-image: linear-gradient(to right bottom,rgba(126, 213, 111, 0.801),rgb(40, 180, 133) ),url(../img/hero.jpg);
+    height: 95vh;
+    background-size: cover;
+    background-position: top;
+
+    clip-path: polygon(0 0, 100% 0, 100% 75vh , 0 100%);
+}

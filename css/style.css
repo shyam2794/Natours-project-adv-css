@@ -49,6 +49,179 @@ body {
     height: 95vh;
     background-size: cover;
     background-position: top;
-
+    position: relative;
     clip-path: polygon(0 0, 100% 0, 100% 75vh , 0 100%);
+}
+
+/* 
+    Instead of changing the display property of the image like from inline to block ,
+    it is always a good practice to wrap the image inside a div and style that div instead . 
+    when we give the position as absolute and provide some top and left property. The browser by default will point to
+    the body . But in our case it should 35px from the header. to do that we need to make sure that we have 
+    position: relative in the header 
+*/
+
+.logo-box{
+    position: absolute;
+    top: 35px;
+    left: 35px;
+}
+
+/* 
+    Its enough to provide either height or width to the image . If any one of the property is given . The browser
+    will autocalculate the other . 
+*/
+
+.logo{
+    height: 40px;
+}
+
+/*  To center a element in the page . Here the top and left push the elements to 40% and 50% respectively . 
+    But this does not center the element . we want the center of the box to be in the center of left and top.
+    so we need the transform property which points to the element and push the element 50% to the left 
+    and top . with this technique the text-box remains in the center irrespective of resizing the browser 
+*/
+
+.text-box{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.primary-header{
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
+
+.primary-header-main{
+    display: block;
+    letter-spacing: 35px;
+    font-size: 60px;
+    font-weight: 400;
+
+    /* animation 
+    animation-name:  give the name of the animation here . This is the name which we have given in the keyframes;
+    animation-duration: for how long this animation should run . here it runs for 1s;
+    animation-delay: after how much time the animation should start;
+    animation-iteration-count: for how much time the animation should run;
+    animation-timing-function: there are many built in functions for this like ;
+    */
+    animation: moveInLeft 1s ease-out; 
+}
+
+.primary-header-sub{
+    display: block;
+    font-size: 20px;
+    letter-spacing: 17.4px;
+    font-weight: 700;
+    animation: moveInRight 1s .75s ease-out;  
+    animation-fill-mode: backwards;
+} 
+
+/* 
+    There are 2 ways in which we can do animation in css . 
+    1. transition property . 
+    2. @keyframes . 
+
+    Transition property is helpful when we need to make animation on some action like hover etc 
+
+    @keyframes 
+    -----------
+    @keyframes is for complex animations like reveal the elements on page scroll etc . 
+    Keyframes has multiple states like - 0% to 100%
+    0% - marks the start of the animation 
+    100% - marks the end of the animation 
+    once the keyframes is added , then we need to apply it to the element which we need to animate . 
+    This can be done with the help of the animation property . 
+*/
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/* 
+    It is always a good practice to add the transition property on the button base class . Here we have
+    multiple transition on different states of the button like hover active visited etc . 
+    We have two classes .btn-white and .btn . .btn-white -> which is specific to the button like color,
+    background color etc .  
+*/
+
+.btn:link,.btn:visited{
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+}
+
+/* box-shadow - here does not the shadow for the x axis . we need it only for the y axis 
+   it takes 4 things X Y blur color . 
+*/
+
+.btn:hover{
+    transform: translateY(-5px); /*  This pushes the element -5px up */
+    box-shadow: 0 10px 20px rgb(0 ,0, 0,0.2);
+}
+
+.btn:active{
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgb(0 ,0, 0,0.2);
+}
+
+.btn-white{
+    background-color: #fff;
+    color: #28b485;
+}
+
+/* animation-fill-mode - backwards - say you want an element to appear after some secs . Then the 
+   backwards property will be pretty usefull as it completes the 0% before the animation even begins. 
+*/
+
+.btn-animated{
+    animation: moveInBottom 1s 1.5s ease-out;
+    animation-fill-mode: backwards;
 }

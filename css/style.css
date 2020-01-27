@@ -40,7 +40,7 @@ body {
     the height property when provided in vh will take the height based on the view port . 
     the background position when mentioned top , will make the top of the image to remain static when we resize the
     screen , in this case the bottom of the image will be cropped when we resize.
-    background size when provided with property as cover , will make the image to fit in the specified height . 
+    background size as cover , will make the image to fit in the specified height . 
     clipath - the order goes from ( top , right , bottom , left ) . each of the arguments have two things X Y . 
 */
 
